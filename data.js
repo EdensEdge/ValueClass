@@ -2,11 +2,14 @@
 // module.exports = // <-- uncomment for CommonJS modules
 function DataClass(name, { props, prototype }) {
     prototype.__storage__ ??= new Map();
-    let valclass = changename(name, function() {
+    let valclass = changeName(name, function() {
         let args, newtarget, myprops;
+
         args = [...arguments];
+
         newtarget = args[0]; args.shift();
         if(!newtarget) return new valclass.meta(...args);
+
         myprops = [];
         for (let prop in prototype) {
             if (props[prop]) {
@@ -15,6 +18,7 @@ function DataClass(name, { props, prototype }) {
                 args.shift();
             }
         }
+
         let oldmap = null, curmap = prototype.__storage__, tail = myprops.pop();
         for (let myprop of myprops) {
             oldmap = curmap;
@@ -34,10 +38,6 @@ function DataClass(name, { props, prototype }) {
     valclass.meta = valclass;
     return valclass;
 }
-
-function changename(name, func) {
-    return (new Function(
-        "f",
-        "return function " + name + "() {return f.call(this, new.target, ...arguments)}"
-    ))(func);
+function changeName(name, func) {
+    return (new Function("f", "return function " + name + "() {return f.call(this, new.target, ...arguments)}"))(func);
 }
