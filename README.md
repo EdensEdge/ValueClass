@@ -7,4 +7,4 @@ Data Classes are:
   * comparable
   * easy to create
 
-note: DataClass requires WeakRef (Node 14.6.0, ES2021). The code doesn't support CommonJS or ES modules, but its pretty simple so you can add it yourself
+^note: DataClass requires WeakRef (Node 14.6.0, ES2021). The code doesn't support CommonJS or ES modules, but its pretty simple so you can add it yourself^
