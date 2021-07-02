@@ -41,3 +41,6 @@ function DataClass(name, { props, prototype }) {
 function changeName(name, func) {
     return (new Function("f", "return function " + name + "() {return f.call(this, new.target, ...arguments)}"))(func);
 }
+
+
+// ooga booga mooga
