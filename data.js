@@ -27,10 +27,8 @@ function DataClass(name, { props, prototype }) {
             else
                 curmap = curmap.set(this[myprop], new Map()).get(this[myprop]);
         }
-        if (curmap.has(this[tail]))
-            return curmap.get(this[tail]).deref();
-        else
-            curmap.set(this[tail], new WeakRef(this));
+        if (curmap.has(this[tail])) return curmap.get(this[tail]).deref();
+        else curmap.set(this[tail], new WeakRef(this));
         
         Object.freeze(this);
     });
